@@ -5,7 +5,8 @@ Created on Sun Dec  6 19:04:22 2015
 @author: huseyin
 """
 
-import functions as mf
+import n1 as mf
+#from functions import *
 from scipy.stats import mode
 import numpy as np
 
