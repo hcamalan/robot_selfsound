@@ -10,6 +10,25 @@ import functions as f
 import matplotlib.pyplot as plt
 
 
+def run_tests():
+    mfcc = np.load("mfcc_orig.npy")
+
+    passed = ["failed", "passed"]
+
+    print "flatten_recreate_test:\t\t", passed[flatten_recreate_test(mfcc)]
+    print "rescale_max_check_test:\t\t", passed[rescale_max_check_test(mfcc)]
+    print "rescale_max_check_test_2:\t", passed[rescale_max_check_test_2(mfcc)]
+    print "rescale_data_check_test:\t", passed[rescale_data_check_test(mfcc)]
+    print "convert_to_z_test:\t\t", passed[convert_to_z_test(mfcc)]
+    print "convert_to_z_test_2:\t\t", passed[convert_to_z_test_2(mfcc)]
+    print "convert_to_z_test_3:\t\t", passed[convert_to_z_test_3(mfcc)]
+    print "preprocessing_test:\t\t", passed[preprocessing_test(mfcc)]
+    print "make_chunks_test:\t\t", passed[make_chunks_test(mfcc, f.make_chunks(mfcc, 5)[1])]
+    print "confusion_matrix_test:\t\t", passed[confusion_matrix_test()]
+    #print "learn_predict_test error ratio:\t%", str(int(np.round(learn_predict_test(), 2)*100))
+    return 0 
+
+
 def plot_components(mat):
     plt.figure(figsize = (16,12))
     for i in range(12):
@@ -106,7 +125,7 @@ def confusion_matrix_test(n_cls = 3):
     dummy_dat = np.ones((100, n_cls))
     for i in range(0, n_cls):
         dummy_dat[:, i] *= i
-    return np.all(np.eye(n_cls)==f.calculate_confusion_matrix(dummy_dat, np.arange(n_cls), n_nets = n_cls))
+    return np.all(np.eye(n_cls)==f.calculate_confusion_matrix(dummy_dat, np.arange(n_cls)))
 #    
 def learn_predict_test():
     length = 1000

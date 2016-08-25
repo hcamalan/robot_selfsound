@@ -127,6 +127,8 @@ def convert_to_z(mat):
 
 def unconvert_from_z(means, stds, mat):
     n_walks = mat.shape[2]
+    if n_walks == 1:
+        return mat*stds + means
     temp = flatten_ax(mat)
     return recreate_ax(temp*stds + means, n_walks)
 
@@ -225,11 +227,12 @@ def predict_mfcc(net, j_input, n_mfcc = 13):
     return mfcc_pred
 
 
-def calculate_confusion_matrix(preds_aw, cls, n_nets = 3):
+def calculate_confusion_matrix(preds_aw, cls):
     """
     (np.array, np.array, [int]) -> np.array
     Calculates the confusion matrix given the predictions for all walks and the classes of these walks.
     """
+    n_nets = len(cls)
     conf_mat = np.zeros((n_nets, n_nets))
     for i in range(0, n_nets):
         preds_reshaped = np.reshape(preds_aw[:, cls == i], -1)
