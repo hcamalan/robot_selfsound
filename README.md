@@ -12,4 +12,4 @@ Description of files:
 - walk_data_demonstration.ipynb : Demonstration of ego-noise prediction and subtraction on the Aldebaran Nao robot.
 - head_data_demonstration.ipynb : Same, but done on only one joint in order to see if the implementation is actually working.
 
-The repository will be reorganized very soon so ignore the other files for now :)
+The repository will be reorganized very soon so the other files should be ignored for now
